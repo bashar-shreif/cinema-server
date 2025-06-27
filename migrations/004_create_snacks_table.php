@@ -1,5 +1,5 @@
 <?php
-require("../connection/connection.php");
+require("../connections/connection.php");
 
 $query = "CREATE TABLE snacks (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -7,5 +7,8 @@ $query = "CREATE TABLE snacks (
     price FLOAT
 );";
 
-$execution = $mysqli->prepare($query);
+$execution = $conn->prepare($query);
 $execution->execute();
+
+$conn->close();
+?>

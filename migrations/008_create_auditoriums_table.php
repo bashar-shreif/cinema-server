@@ -1,5 +1,5 @@
 <?php
-require("../connection/connection.php");
+require("../connections/connection.php");
 
 $query = "CREATE TABLE auditoriums (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -8,5 +8,8 @@ $query = "CREATE TABLE auditoriums (
     total_columns INT
 );";
 
-$execution = $mysqli->prepare($query);
+$execution = $conn->prepare($query);
 $execution->execute();
+
+$conn->close();
+?>

@@ -1,5 +1,5 @@
 <?php
-require("../connection/connection.php");
+require("../connections/connection.php");
 
 $query = "CREATE TABLE tickets (
     snack_id INT,
@@ -10,5 +10,8 @@ $query = "CREATE TABLE tickets (
 );
 ";
 
-$execution = $mysqli->prepare($query);
+$execution = $conn->prepare($query);
 $execution->execute();
+
+$conn->close();
+?>

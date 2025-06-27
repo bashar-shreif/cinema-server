@@ -1,7 +1,10 @@
 <?php
-require("../connection/connection.php");
+require("../connections/connection.php");
 
 $query = "";
 
-$execution = $mysqli->prepare($query);
+$execution = $conn->prepare($query);
 $execution->execute();
+
+$conn->close();
+?>

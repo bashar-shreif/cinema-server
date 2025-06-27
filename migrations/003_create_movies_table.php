@@ -1,5 +1,5 @@
 <?php
-require("../connection/connection.php");
+require("../connections/connection.php");
 
 $query = "CREATE TABLE movies (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -11,5 +11,8 @@ $query = "CREATE TABLE movies (
     release_date DATE
 );";
 
-$execution = $mysqli->prepare($query);
+$execution = $conn->prepare($query);
 $execution->execute();
+
+$conn->close();
+?>

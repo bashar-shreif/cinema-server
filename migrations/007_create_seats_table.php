@@ -1,5 +1,5 @@
 <?php
-require("../connection/connection.php");
+require("../connections/connection.php");
 
 $query = "CREATE TABLE seats (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -9,5 +9,8 @@ $query = "CREATE TABLE seats (
     FOREIGN KEY (auditorium_id) REFERENCES auditoriums(id)
 );";
 
-$execution = $mysqli->prepare($query);
+$execution = $conn->prepare($query);
 $execution->execute();
+
+$conn->close();
+?>
