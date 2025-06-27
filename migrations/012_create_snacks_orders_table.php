@@ -1,13 +1,11 @@
 <?php
 require("../connection/connection.php");
 
-$query = "CREATE TABLE payments (
+$query = "CREATE TABLE snack_orders (
     id INT AUTO_INCREMENT PRIMARY KEY,
     booking_id INT,
-    amount DECIMAL(6,2),
-    method VARCHAR(50),
-    date DATETIME,
-    FOREIGN KEY (booking_id) REFERENCES bookings(id)
+    quantity INT,
+    FOREIGN KEY (booking_id) REFERENCES bookings(id),
 );";
 
 $execution = $mysqli->prepare($query);
