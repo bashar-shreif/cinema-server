@@ -6,11 +6,13 @@ $query = "CREATE TABLE bookings (
     user_id INT NOT NULL,
     ticket_id INT NOT NULL,
     seat_id INT NOT NULL,
+    auditorium_id INT NOT NULL,
     status ENUM('booked', 'cancelled') DEFAULT 'booked' NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     FOREIGN KEY (user_id) REFERENCES users(id),
     FOREIGN KEY (ticket_id) REFERENCES tickets(id),
-    FOREIGN KEY (seat_id) REFERENCES seats(id)
+    FOREIGN KEY (seat_id) REFERENCES seats(id),
+    FOREIGN KEY (auditorium_id) REFERENCES auditoriums(id)
 );";
 
 $execution = $conn->prepare($query);
