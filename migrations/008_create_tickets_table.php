@@ -12,6 +12,7 @@ $query = "CREATE TABLE tickets (
     FOREIGN KEY (seat_id) REFERENCES seats(id)
 );";
 
+
 $execution = $conn->prepare($query);
 $execution->execute();
 
