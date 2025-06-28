@@ -9,7 +9,7 @@ class Ticket extends Model {
     private int $auditorium_id;
     private string $date;
     private string $time;
-    private double $price;
+    private float $price;
 
     public function getMovieTickets() {}
     public function getTicketDetails() {}

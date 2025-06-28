@@ -2,7 +2,7 @@
 
 require("Model.php");
 
-class Admin extends Model {
+class Admin extends User {
 
     public function addMovie() {}
     public function deleteMovie() {}
