@@ -1,10 +1,10 @@
 <?php
-require("../connections/connection.php");
+// require("../connections/connection.php");
 
-$query = "";
+// $query = "";
 
-$execution = $conn->prepare($query);
-$execution->execute();
+// $execution = $conn->prepare($query);
+// $execution->execute();
 
-$conn->close();
+// $conn->close();
 ?>
