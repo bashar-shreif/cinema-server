@@ -3,11 +3,12 @@
 require("../connections/connection.php");
 abstract class Model
 {
-    protected static string $table;
-    protected static string $primary_key;
+    protected static ?string $table = null;
+    protected static ?string $primary_key = null;
 
     public static function selectById(mysqli $conn, int $id)
     {
+        
         $sql = sprintf(
             "Select * from %s where %s = ?",
             static::$table,
@@ -33,23 +34,20 @@ abstract class Model
     }
     public static function create(mysqli $conn, array $data)
     {
-        $columns = "";
-        $values = "";
-        foreach ($data as $key => $value) {
-            $columns .= "{$key},";
-            $values .= "{$value},";
-        }
-        $sql = sprintf("Insert into %s ({substr($columns, 0, -1)}) values ({substr($values, 0, -1)})", static::$table);
+        $columns = implode(",", array_keys($data));
+        $values = implode(",", array_values($data));
+        $sql = sprintf("Insert into %s (%s) values (%s)", static::$table, static::$columns, $columns, $values); 
         $query = $conn->prepare($sql);
         return $query->execute();
     }
     public static function update(mysqli $conn, array $data, int $id)
     {
-        $updatable = "";
+        $updatable = [];
         foreach ($data as $key => $value) {
-            $updatable .= "{$key} = {$value},";
+            $updatable[] = "$key = ?";
         }
-        $sql = sprintf("Update %s set {substr($updatable, 0, -1)} where %s = ?", static::$table, static::$primary_key);
+        $updatablestr = implode(",", $updatable);
+        $sql = sprintf("Update %s set %s where %s = ?", static::$table, static::$updatablestr,  static::$primary_key);
         $query = $conn->prepare($sql);
         $query->bind_param("i", $id);
         return $query->execute();
@@ -63,6 +61,7 @@ abstract class Model
             static::$primary_key
         );
         $query = $conn->prepare($sql);
+
         $query->bind_param("i", $id);
         if ($query->execute()) {
             return true;
@@ -77,7 +76,7 @@ abstract class Model
     {
         $sql = sprintf("select exists (select * from %s where email = ?)", static::$table);
         $query = $conn->prepare($sql);
-        $query->bind_param("s", $email);
+        $query->bind_param("s", $data["email"]);
         $query->execute();
         $data = $query->get_result();
         if ($data->fetch_assoc()) {

@@ -46,7 +46,7 @@ class Movie extends Model
         }
         return $objects;
     }
-    public function getMovieDetails()
+    public function toArray()
     {
         return [$this->id, $this->title, $this->description, $this->rating, $this->trailer_url, $this->release_date];
     }

@@ -3,8 +3,8 @@ require("../models/Model.php");
 
 class User extends Model
 {
-    protected static $table = "users";
-    protected static $primaryKey = "id";
+    protected static ?string $table = "users";
+    protected static ?string $primary_key = "id";
     private int $id;
     private string $username;
     private string $name;
@@ -40,6 +40,15 @@ class User extends Model
     }
     public function getPassword () {
         return password_hash($this->password, PASSWORD_DEFAULT);
+    }
+    public function getPhone () {
+        return $this->phone;
+    }
+    public function getUserTypeId () {
+        return $this->user_type_id;
+    }
+    public function getId () {
+        return $this->id;
     }
     public static function getFavoriteGenre()
     {
