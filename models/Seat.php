@@ -3,8 +3,8 @@
 require("Model.php");
 
 class Seat extends Model {
-
-    private int $id;
+    protected static $table = "seats";
+    protected static $primaryKey = "id";    private int $id;
     private int $auditorium_id;
     private string $row_label;
     private int $seat_number;

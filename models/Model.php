@@ -36,8 +36,8 @@ abstract class Model
         $columns = "";
         $values = "";
         foreach ($data as $key => $value) {
-            $columns += "{$key},";
-            $values += "{$value},";
+            $columns .= "{$key},";
+            $values .= "{$value},";
         }
         $sql = sprintf("Insert into %s ({substr($columns, 0, -1)}) values ({substr($values, 0, -1)})", static::$table);
         $query = $conn->prepare($sql);
@@ -47,7 +47,7 @@ abstract class Model
     {
         $updatable = "";
         foreach ($data as $key => $value) {
-            $updatable += "{$key} = {$value},";
+            $updatable .= "{$key} = {$value},";
         }
         $sql = sprintf("Update %s set {substr($updatable, 0, -1)} where %s = ?", static::$table, static::$primary_key);
         $query = $conn->prepare($sql);

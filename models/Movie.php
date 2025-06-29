@@ -4,7 +4,8 @@ require("Model.php");
 
 class Movie extends Model
 {
-
+    protected static $table = "movies";
+    protected static $primaryKey = "id";
     private int $id;
     private string $title;
     private string $description;

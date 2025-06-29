@@ -4,6 +4,8 @@ require("Model.php");
 
 class Auditorium extends Model
 {
+    protected static $table = "auditoriums";
+    protected static $primaryKey = "id";
     private int $id;
     private string $name;
     private int $total_columns;

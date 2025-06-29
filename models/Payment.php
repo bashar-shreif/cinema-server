@@ -2,9 +2,10 @@
 
 require("Model.php");
 
-class Payment extends Model {
-
-    public function addPayment() {}
+class Payment extends Model
+{
+    protected static $table = "payments";
+    protected static $primaryKey = "id";
 
     private int $id;
     private int $booking_id;
@@ -12,7 +13,8 @@ class Payment extends Model {
     private int $method_id;
     private string $date;
 
-    public function __construct(array $data) {
+    public function __construct(array $data)
+    {
         $this->id = $data["id"];
         $this->booking_id = $data["booking_id"];
         $this->amount = $data["amount"];

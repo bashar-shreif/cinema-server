@@ -4,7 +4,8 @@ require("Model.php");
 
 class Ticket extends Model
 {
-
+    protected static $table = "tickets";
+    protected static $primaryKey = "id";
     private int $id;
     private int $movie_id;
     private int $seat_id;

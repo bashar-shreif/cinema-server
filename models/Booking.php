@@ -4,7 +4,8 @@ require("Model.php");
 
 class Booking extends Model
 {
-
+    protected static $table = "bookings";
+    protected static $primaryKey = "id";
     private int $id;
     private int $user_id;
     private int $ticket_id;
@@ -13,7 +14,8 @@ class Booking extends Model
     private string $status;
     private string $created_at;
 
-    public function __construct(int $id, int $user_id, int $ticket_id, int $seat_id, int $auditorium_id, string $status, string $created_at) {
+    public function __construct(int $id, int $user_id, int $ticket_id, int $seat_id, int $auditorium_id, string $status, string $created_at)
+    {
         $this->id = $id;
         $this->user_id = $user_id;
         $this->ticket_id = $ticket_id;
