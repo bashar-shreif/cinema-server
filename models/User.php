@@ -40,7 +40,7 @@ class User extends Model
     }
     public function getPassword()
     {
-        return password_hash($this->password, PASSWORD_DEFAULT);
+        return $this->password;
     }
     public function getPhone()
     {
@@ -50,13 +50,10 @@ class User extends Model
     {
         return $this->user_type_id;
     }
-    public function getId()
-    {
+    public function getId(){
         return $this->id;
     }
-    public static function getFavoriteGenre()
-    {
-    }
+
     public static function getBookingCount()
     {
     }
@@ -66,7 +63,7 @@ class User extends Model
         $query = $conn->prepare($sql);
         $values = array_values($data);
         //echo json_encode($values);
-        $query->bind_param("sssiss", ...$values);
+        $query->bind_param("ssisss", ...$values);
         $query->execute();
         $insertedId = $query->insert_id;
         return $insertedId;
