@@ -9,7 +9,7 @@ $query ="CREATE TABLE users (
     email VARCHAR(255) UNIQUE NOT NULL,
     password VARCHAR(255) NOT NULL,
     phone VARCHAR(25),
-    user_type_id INT NOT NULL DEFAULT 0,
+    user_type_id INT NOT NULL DEFAULT 1,
     FOREIGN KEY (user_type_id) REFERENCES user_types (id)
 );";
 

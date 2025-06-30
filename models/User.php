@@ -38,16 +38,20 @@ class User extends Model
     public static function verifyAge()
     {
     }
-    public function getPassword () {
+    public function getPassword()
+    {
         return password_hash($this->password, PASSWORD_DEFAULT);
     }
-    public function getPhone () {
+    public function getPhone()
+    {
         return $this->phone;
     }
-    public function getUserTypeId () {
+    public function getUserTypeId()
+    {
         return $this->user_type_id;
     }
-    public function getId () {
+    public function getId()
+    {
         return $this->id;
     }
     public static function getFavoriteGenre()
@@ -55,6 +59,18 @@ class User extends Model
     }
     public static function getBookingCount()
     {
+    }
+    public static function register(mysqli $conn, array $data)
+    {
+        $sql = "Insert into users (username, name, age, email, password, phone) values (?,?,?,?,?,?)";
+        $query = $conn->prepare($sql);
+        $values = array_values($data);
+        //echo json_encode($values);
+        $query->bind_param("sssiss", ...$values);
+        $query->execute();
+        $insertedId = $query->insert_id;
+        return $insertedId;
+
     }
     public function toArray()
     {

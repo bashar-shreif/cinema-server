@@ -4,8 +4,8 @@ require("Model.php");
 
 class Movie extends Model
 {
-    protected static $table = "movies";
-    protected static $primaryKey = "id";
+    protected static ?string $table = "movies";
+    protected static ?string $primary_key = "id";
     private int $id;
     private string $title;
     private string $description;
@@ -22,9 +22,9 @@ class Movie extends Model
         $this->trailer_url = $data["trailer_url"];
         $this->release_date = $data["release_date"];
     }
-    public function getCurrentMovies(mysqli $conn)
+    public static function getCurrentMovies(mysqli $conn)
     {
-        $sql = "Select * movies where release_date < NOW();";
+        $sql = "Select * from movies where release_date < NOW();";
         $query = $conn->prepare($sql);
         $query->execute();
         $data = $query->get_result();
@@ -34,9 +34,9 @@ class Movie extends Model
         }
         return $objects;
     }
-    public function getUpcomingMovies(mysqli $conn)
+    public static function getUpcomingMovies(mysqli $conn)
     {
-                $sql = "Select * movies where release_date > NOW();";
+        $sql = "Select * from movies where release_date > NOW();";
         $query = $conn->prepare($sql);
         $query->execute();
         $data = $query->get_result();

@@ -36,9 +36,10 @@ abstract class Model
     {
         $columns = implode(",", array_keys($data));
         $values = implode(",", array_values($data));
-        $sql = sprintf("Insert into %s (%s) values (%s)", static::$table, static::$columns, $columns, $values); 
+        $sql = sprintf("Insert into %s (%s) values (%s)", static::$table, $columns, $values); 
         $query = $conn->prepare($sql);
-        return $query->execute();
+        $query->execute();
+
     }
     public static function update(mysqli $conn, array $data, int $id)
     {
@@ -47,7 +48,7 @@ abstract class Model
             $updatable[] = "$key = ?";
         }
         $updatablestr = implode(",", $updatable);
-        $sql = sprintf("Update %s set %s where %s = ?", static::$table, static::$updatablestr,  static::$primary_key);
+        $sql = sprintf("Update %s set %s where %s = ?", static::$table, $updatablestr,  static::$primary_key);
         $query = $conn->prepare($sql);
         $query->bind_param("i", $id);
         return $query->execute();
