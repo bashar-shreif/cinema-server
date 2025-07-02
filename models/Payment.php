@@ -42,5 +42,4 @@ class Payment extends Model
         return $this->date;
     }
 
-
 }

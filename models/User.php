@@ -73,4 +73,5 @@ class User extends Model
     public static function getBookingCount()
     {
     }
+
 }

@@ -12,7 +12,6 @@ class Movie extends Model
     private string $rating;
     private string $trailer_url;
     private string $release_date;
-
     public function __construct(array $data)
     {
         $this->id = $data["id"];
@@ -74,5 +73,4 @@ class Movie extends Model
     {
         return $this->release_date;
     }
-
 }

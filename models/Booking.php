@@ -63,5 +63,7 @@ class Booking extends Model
     {
         return $this->created_at;
     }
-
+    public function createBooking() {}
+    public function getBookingHistory() {}
+    public function cancelBooking() {}
 }

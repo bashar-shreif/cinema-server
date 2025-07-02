@@ -1,6 +1,7 @@
 <?php
 
 require("../connections/connection.php");
+
 abstract class Model
 {
     protected static ?string $table = null;
@@ -27,6 +28,7 @@ abstract class Model
         $query->execute();
         $data = $query->get_result();
         $objects = [];
+
         while ($row = $data->fetch_assoc()) {
             $objects[] = new static($row);
         }
@@ -62,7 +64,6 @@ abstract class Model
             static::$primary_key
         );
         $query = $conn->prepare($sql);
-
         $query->bind_param("i", $id);
         if ($query->execute()) {
             return true;
@@ -86,6 +87,4 @@ abstract class Model
             return false;
         }
     }
-
 }
-
