@@ -50,5 +50,29 @@ class Movie extends Model
     {
         return [$this->id, $this->title, $this->description, $this->rating, $this->trailer_url, $this->release_date];
     }
+    public function getId()
+    {
+        return $this->id;
+    }
+    public function getTitle()
+    {
+        return $this->title;
+    }
+    public function getDescription()
+    {
+        return $this->description;
+    }
+    public function getRating()
+    {
+        return $this->rating;
+    }
+    public function getTrailerUrl()
+    {
+        return $this->trailer_url;
+    }
+    public function getReleaseDate()
+    {
+        return $this->release_date;
+    }
 
 }

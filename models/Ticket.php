@@ -36,5 +36,25 @@ class Ticket extends Model
     {
         return [$this->id, $this->movie_id, $this->seat_id, $this->date, $this->time, $this->price];
     }
+    public function getId()
+    {
+        return $this->id;
+    }
+    public function getSeatId()
+    {
+        return $this->seat_id;
+    }
+    public function getDate()
+    {
+        return $this->date;
+    }
+    public function getTime()
+    {
+        return $this->time;
+    }
+    public function getPrice()
+    {
+        return $this->price;
+    }
 
 }

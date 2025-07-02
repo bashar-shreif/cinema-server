@@ -21,5 +21,26 @@ class Payment extends Model
         $this->method_id = $data["method_id"];
         $this->date = $data["date"];
     }
+    public function getId(): int
+    {
+        return $this->id;
+    }
+    public function getBookingId(): int
+    {
+        return $this->booking_id;
+    }
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+    public function getMethodId(): int
+    {
+        return $this->method_id;
+    }
+    public function getDate(): string
+    {
+        return $this->date;
+    }
+
 
 }

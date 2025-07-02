@@ -20,4 +20,8 @@ $response["Id"] = User::register($conn, $data);
 
 echo json_encode($response);
 return;
+} else {
+    $response["status"] = 400;
+    $response["error"] = "Missing fields";
+    echo json_encode($response);
 }

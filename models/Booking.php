@@ -35,5 +35,33 @@ class Booking extends Model
             return false;
         }
     }
+    public function getId(): int
+    {
+        return $this->id;
+    }
+    public function getUserId(): int
+    {
+        return $this->user_id;
+    }
+    public function getTicketId(): int
+    {
+        return $this->ticket_id;
+    }
+    public function getSeatId(): int
+    {
+        return $this->seat_id;
+    }
+    public function getauditoriumId(): int
+    {
+        return $this->auditorium_id;
+    }
+    public function getStatus(): int
+    {
+        return $this->status;
+    }
+    public function getCreatedAt(): DateTime
+    {
+        return $this->created_at;
+    }
 
 }

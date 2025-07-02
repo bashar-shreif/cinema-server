@@ -13,4 +13,12 @@ class Genre extends Model
       $this->id = $data["id"];
       $this->genre = $data["genre"];
    }
+   public function getId(): int
+   {
+      return $this->id;
+   }
+   public function getGenre(): string
+   {
+      return $this->genre;
+   }
 }
