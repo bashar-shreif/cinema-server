@@ -65,5 +65,4 @@ class Booking extends Model
     }
     public function createBooking() {}
     public function getBookingHistory() {}
-    public function cancelBooking() {}
 }

@@ -21,10 +21,11 @@ class Movie extends Model
         $this->trailer_url = $data["trailer_url"];
         $this->release_date = $data["release_date"];
     }
-    public static function getCurrentMovies(mysqli $conn)
+    public static function getCurrentMovies()
     {
+        $mysqli = self::$mysqli;
         $sql = "Select * from movies where release_date < NOW();";
-        $query = $conn->prepare($sql);
+        $query = $mysqli->prepare($sql);
         $query->execute();
         $data = $query->get_result();
         $objects = [];
@@ -33,10 +34,11 @@ class Movie extends Model
         }
         return $objects;
     }
-    public static function getUpcomingMovies(mysqli $conn)
+    public static function getUpcomingMovies()
     {
+        $mysqli = self::$mysqli;
         $sql = "Select * from movies where release_date > NOW();";
-        $query = $conn->prepare($sql);
+        $query = $mysqli->prepare($sql);
         $query->execute();
         $data = $query->get_result();
         $objects = [];
@@ -48,29 +50,5 @@ class Movie extends Model
     public function toArray()
     {
         return [$this->id, $this->title, $this->description, $this->rating, $this->trailer_url, $this->release_date];
-    }
-    public function getId()
-    {
-        return $this->id;
-    }
-    public function getTitle()
-    {
-        return $this->title;
-    }
-    public function getDescription()
-    {
-        return $this->description;
-    }
-    public function getRating()
-    {
-        return $this->rating;
-    }
-    public function getTrailerUrl()
-    {
-        return $this->trailer_url;
-    }
-    public function getReleaseDate()
-    {
-        return $this->release_date;
     }
 }

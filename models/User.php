@@ -26,38 +26,12 @@ class User extends Model
         $this->user_type_id = $data["user_type_id"];
 
     }
-    public function getPassword()
-    {
-        return $this->password;
-    }
-    public function getPhone()
-    {
-        return $this->phone;
-    }
-    public function getUserTypeId()
-    {
-        return $this->user_type_id;
-    }
-    public function getId()
-    {
-        return $this->id;
-    }
-    public static function register(mysqli $conn, array $data)
-    {
-        $sql = "Insert into users (username, name, age, email, password, phone) values (?,?,?,?,?,?)";
-        $query = $conn->prepare($sql);
-        $values = array_values($data);
-        //echo json_encode($values);
-        $query->bind_param("ssisss", ...$values);
-        $query->execute();
-        $insertedId = $query->insert_id;
-        return $insertedId;
 
-    }
-    public static function getByEmail(mysqli $conn, string $email)
+    public static function getByEmail(string $email)
     {
+        $mysqli = self::$mysqli;
         $sql = "Select * from users where email = ?";
-        $query = $conn->prepare($sql);
+        $query = $mysqli->prepare($sql);
         $query->bind_param("s", $email);
         $query->execute();
         $data = $query->get_result()->fetch_assoc();
@@ -67,11 +41,21 @@ class User extends Model
     {
         return [$this->id, $this->username, $this->name, $this->age, $this->email, $this->password, $this->phone, $this->user_type_id];
     }
-    public static function verifyAge()
+    public function getPassword()
     {
+        return $this->password;
     }
-    public static function getBookingCount()
+    public function getId()
     {
+        return $this->id;
     }
+    public static function exists(string $email) {
+        $mysqli = self::$mysqli;
+        $sql = "SELECT 1 FROM users WHERE email = ?";
+        $query = $mysqli->prepare($sql);
+        $query->bind_param("s", $email);
+        return $query->execute();
+    }
+
 
 }
