@@ -10,4 +10,12 @@ Route::Route($apis,'/edit_movie','MovieController::edit()');
 Route::Route($apis,'/new_movies','MovieController::getUpcomingMovies()');
 Route::Route($apis,'/current_movies','MovieController::getCurrentMovies()');
 
+//Routes to the user controller
+Route::Route($apis, '/users', 'UserController::getAll()');
+Route::Route($apis,'/delete_user','UserController::deleteAll()');
+Route::Route($apis,'/add_user','UserController::create()');
+Route::Route($apis,'/edit_user','UserController::edit()');
+
+
+
 ?>
