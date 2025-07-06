@@ -2,6 +2,6 @@
 
 require("Route.php");
 
-Route::Route($apis, '/edit_article', 'ArticleController::edit()');
-
+Route::Route($apis, '/movies', 'MovieController::getAll()');
+Route::Route($apis,'','');
 ?>
